@@ -1,11 +1,11 @@
 package fastwhisper
 
 import (
-	"path/filepath"
 	"fmt"
 	"log"
 	"os"
 	"os/exec"
+	"path/filepath"
 	"strings"
 	"time"
 )
@@ -19,13 +19,6 @@ func init() {
 		panic(err) // 如果加载时区失败，则直接 panic
 	}
 	time.Local = loc
-}
-
-type WhisperConfig struct {
-	ModelType string // 使用的模型名称 如large-v3
-	ModelDir  string // 模型存放路径
-	Language  string // 语言
-	VideoRoot string // 视频存放路径
 }
 
 /*

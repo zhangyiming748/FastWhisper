@@ -1,7 +1,7 @@
 package fastwhisper
 
 import (
-	"filepath"
+	"path/filepath"
 	"fmt"
 	"log"
 	"os"

@@ -24,7 +24,7 @@ func init() {
 /*
 生成字幕后返回字幕的绝对路径
 */
-func GetSubtitle(fp string, wc WhisperConfig) string {
+func GetSubtitle(fp string, wc *WhisperConfig) string {
 	var cmd *exec.Cmd
 	if isCUDAAvailable() {
 		cmd = exec.Command("whisper", fp, "--model", wc.ModelType, "--device", "cuda", "--model_dir", wc.ModelDir, "--output_format", "srt", "--prepend_punctuations", ",.?", "--language", wc.Language, "--output_dir", wc.VideoRoot, "--verbose", "True")

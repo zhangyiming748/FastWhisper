@@ -27,9 +27,9 @@ func init() {
 func GetSubtitle(fp string, wc *WhisperConfig) string {
 	var cmd *exec.Cmd
 	if isCUDAAvailable() {
-		cmd = exec.Command("whisper", fp, "--model", wc.ModelType, "--device", "cuda", "--model_dir", wc.ModelDir, "--output_format", "srt", "--prepend_punctuations", ",.?", "--language", wc.Language, "--output_dir", wc.VideoRoot, "--verbose", "True")
+		cmd = exec.Command("whisper", fp, "--model", wc.ModelType, "--device", "cuda", "--model_dir", wc.ModelDir, "--output_format", "srt", "--prepend_punctuations", ",.?", "--language", wc.Language, "--output_dir", filepath.Dir(wc.VideoRoot), "--verbose", "True")
 	} else {
-		cmd = exec.Command("whisper", fp, "--model", wc.ModelType, "--model_dir", wc.ModelDir, "--output_format", "srt", "--prepend_punctuations", ",.?", "--language", wc.Language, "--output_dir", wc.VideoRoot, "--verbose", "True")
+		cmd = exec.Command("whisper", fp, "--model", wc.ModelType, "--model_dir", wc.ModelDir, "--output_format", "srt", "--prepend_punctuations", ",.?", "--language", wc.Language, "--output_dir", filepath.Dir(wc.VideoRoot), "--verbose", "True")
 	}
 	log.Printf("命令: %s\n", cmd.String())
 	startTime := time.Now()

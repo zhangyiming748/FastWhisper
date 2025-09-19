@@ -69,12 +69,12 @@ loop:
 	} else {
 		log.Printf("当前字幕生成成功\t命令原文:%v\t输出:%v\n", cmd.String(), string(out))
 	}
-	fp = strings.Replace(fp, filepath.Ext(fp), ".srt", 1)
+	wc.VideoRoot = strings.Replace(wc.VideoRoot, filepath.Ext(wc.VideoRoot), ".srt", 1)
 	endTime := time.Now()
 	duration := endTime.Sub(startTime)
 	totalMinutes := duration.Seconds() / 60
-	log.Printf("文件%v\n总共用时: %.2f 分钟\n", fp, totalMinutes)
-	return fp
+	log.Printf("文件%v\n总共用时: %.2f 分钟\n", wc.VideoRoot, totalMinutes)
+	return wc.VideoRoot
 }
 
 func isCUDAAvailable() bool {

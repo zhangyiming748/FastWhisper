@@ -1,4 +1,4 @@
-package fastwhisper
+package FastWhisper
 
 type WhisperConfig struct {
 	ModelType string // 使用的模型名称 如large-v3

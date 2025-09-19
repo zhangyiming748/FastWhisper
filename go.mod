@@ -1,3 +1,3 @@
-module github.com/zhangyiming748/fastWhisper
+module github.com/zhangyiming748/FastWhisper
 
-go 1.25.0
+go 1.25.1

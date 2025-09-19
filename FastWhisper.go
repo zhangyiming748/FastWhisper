@@ -1,4 +1,4 @@
-package fastwhisper
+package FastWhisper
 
 import (
 	"fmt"

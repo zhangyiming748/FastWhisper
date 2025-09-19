@@ -24,12 +24,12 @@ func init() {
 /*
 生成字幕后返回字幕的绝对路径
 */
-func GetSubtitle(fp string, wc *WhisperConfig) string {
+func GetSubtitle(wc *WhisperConfig) string {
 	var cmd *exec.Cmd
 	if isCUDAAvailable() {
-		cmd = exec.Command("whisper", fp, "--model", wc.ModelType, "--device", "cuda", "--model_dir", wc.ModelDir, "--output_format", "srt", "--prepend_punctuations", ",.?", "--language", wc.Language, "--output_dir", filepath.Dir(wc.VideoRoot), "--verbose", "True")
+		cmd = exec.Command("whisper", wc.VideoRoot, "--model", wc.ModelType, "--device", "cuda", "--model_dir", wc.ModelDir, "--output_format", "srt", "--prepend_punctuations", ",.?", "--language", wc.Language, "--output_dir", filepath.Dir(wc.VideoRoot), "--verbose", "True")
 	} else {
-		cmd = exec.Command("whisper", fp, "--model", wc.ModelType, "--model_dir", wc.ModelDir, "--output_format", "srt", "--prepend_punctuations", ",.?", "--language", wc.Language, "--output_dir", filepath.Dir(wc.VideoRoot), "--verbose", "True")
+		cmd = exec.Command("whisper", wc.VideoRoot, "--model", wc.ModelType, "--model_dir", wc.ModelDir, "--output_format", "srt", "--prepend_punctuations", ",.?", "--language", wc.Language, "--output_dir", filepath.Dir(wc.VideoRoot), "--verbose", "True")
 	}
 	log.Printf("命令: %s\n", cmd.String())
 	startTime := time.Now()

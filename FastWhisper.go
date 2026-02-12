@@ -26,14 +26,21 @@ func init() {
 */
 func GetSubtitle(wc *WhisperConfig) string {
 	var cmd *exec.Cmd
+	var args []string
+	args = append(args, wc.VideoRoot)
+	args = append(args, "--model", wc.ModelType)
 	if isCUDAAvailable() {
-		cmd = exec.Command("whisper", wc.VideoRoot, "--model", wc.ModelType, "--device", "cuda", "--model_dir", wc.ModelDir, "--output_format", "srt", "--prepend_punctuations", ",.?", "--language", wc.Language, "--output_dir", filepath.Dir(wc.VideoRoot), "--verbose", "True")
-	} else {
-		cmd = exec.Command("whisper", wc.VideoRoot, "--model", wc.ModelType, "--model_dir", wc.ModelDir, "--output_format", "srt", "--prepend_punctuations", ",.?", "--language", wc.Language, "--output_dir", filepath.Dir(wc.VideoRoot), "--verbose", "True")
+		args = append(args, "--device", "cuda")
+
 	}
+	args = append(args, "--model_dir", wc.ModelDir)
+	args = append(args, "--output_format", "")
+	args = append(args, "--prepend_punctuations", ",.?")
+	args = append(args, "--language", wc.Language)
+	args = append(args, "--output_dir", filepath.Dir(wc.VideoRoot))
+	args = append(args, "--verbose", "True")
 	log.Printf("命令: %s\n", cmd.String())
 	startTime := time.Now()
-
 	// 修改开始：引入定期提示信息机制
 	type result struct {
 		output []byte

@@ -5,6 +5,7 @@ type WhisperConfig struct {
 	ModelDir  string // 模型存放路径
 	Language  string // 语言
 	VideoRoot string // 视频存放的绝对路径
+	Format    string // 字幕输出格式 {txt,vtt,srt,tsv,json,all}
 }
 
 func (wc *WhisperConfig) SetModelType(s string) {

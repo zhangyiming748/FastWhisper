@@ -4,7 +4,7 @@ type WhisperConfig struct {
 	ModelType string // 使用的模型名称 如large-v3
 	ModelDir  string // 模型存放路径
 	Language  string // 语言
-	VideoRoot string // 视频存放路径
+	VideoRoot string // 视频存放的绝对路径
 }
 
 func (wc *WhisperConfig) SetModelType(s string) {

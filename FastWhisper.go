@@ -25,6 +25,26 @@ func init() {
 生成字幕后返回字幕的绝对路径
 */
 func GetSubtitle(wc *WhisperConfig) string {
+	// 验证wc所有属性都不为空或者零值
+	if wc == nil {
+		panic("WhisperConfig不能为nil")
+	}
+	if wc.ModelType == "" {
+		panic("ModelType不能为空")
+	}
+	if wc.ModelDir == "" {
+		panic("ModelDir不能为空")
+	}
+	if wc.Language == "" {
+		panic("Language不能为空")
+	}
+	if wc.VideoRoot == "" {
+		panic("VideoRoot不能为空")
+	}
+	if wc.Format == "" {
+		panic("Format不能为空")
+	}
+
 	var cmd *exec.Cmd
 	var args []string
 	args = append(args, wc.VideoRoot)
@@ -34,7 +54,7 @@ func GetSubtitle(wc *WhisperConfig) string {
 
 	}
 	args = append(args, "--model_dir", wc.ModelDir)
-	args = append(args, "--output_format", "")
+	args = append(args, "--output_format", wc.Format)
 	args = append(args, "--prepend_punctuations", ",.?")
 	args = append(args, "--language", wc.Language)
 	args = append(args, "--output_dir", filepath.Dir(wc.VideoRoot))

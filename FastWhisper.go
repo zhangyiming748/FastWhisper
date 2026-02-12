@@ -59,6 +59,7 @@ func GetSubtitle(wc *WhisperConfig) string {
 	args = append(args, "--language", wc.Language)
 	args = append(args, "--output_dir", filepath.Dir(wc.VideoRoot))
 	args = append(args, "--verbose", "True")
+	cmd = exec.Command("whisper", args...)
 	log.Printf("命令: %s\n", cmd.String())
 	startTime := time.Now()
 	// 修改开始：引入定期提示信息机制

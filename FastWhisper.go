@@ -16,9 +16,10 @@ func init() {
 	// 设置默认时区为 Asia/Shanghai
 	loc, err := time.LoadLocation("Asia/Shanghai")
 	if err != nil {
-		panic(err) // 如果加载时区失败，则直接 panic
+		log.Printf("时区加载失败:%v\n", err) // 如果加载时区失败，则直接 panic
+	} else {
+		time.Local = loc
 	}
-	time.Local = loc
 }
 
 /*
